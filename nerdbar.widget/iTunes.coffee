@@ -1,18 +1,24 @@
 command: """
 read -r running <<<"$(ps -ef | grep \"MacOS/iTunes\" | grep -v \"grep\" | wc -l)" &&
 test $running != 0 &&
-IFS='|' read -r theArtist theName theState <<<"$(osascript <<<'tell application "iTunes" to if player state is playing then 
-        set theTrack to current track
-        set theArtist to artist of theTrack
-        set theName to name of theTrack
-        set theState to player state as string
-        return theArtist & " - " & "<span class='green'>" & theName & "</span>"
-      else if player state is paused then
-        return "<span class='white'>Paused</span>"
-      else
-        return "<span class='white'>Not Connected to iTunes</span>"
-      end')" &&
-echo "<span class='title white'>$theArtist</span><class='artist blue'> $theName</>"
+IFS='|' read -r theArtist theName theState theStream <<<"$(osascript <<<'if application "iTunes" is running then
+  tell application "iTunes"
+    if player state is playing then
+      set theTrack to name of current track
+      set theArtist to artist of current track
+      return theArtist & " - " & "<span class='green'>" & theTrack
+    else if player state is paused then
+      set theTrack to name of current track
+      set theArtist to artist of current track
+      return theArtist & " - " & "<span class='green'>" & theTrack & "<span class='white'>" & " - paused"
+    else
+      return "no song selected"
+    end if
+  end tell
+else
+  return "iTunes is not running"
+end if')" &&
+echo "$theArtist $theName"
 """
 
 refreshFrequency: 10000
@@ -20,7 +26,6 @@ refreshFrequency: 10000
 render: (output) ->
   """
     <link rel="stylesheet" type="text/css" href="./colors.css" />
-    <div class='playing'></div>
   """
 
 style: """
