@@ -1,4 +1,4 @@
-command: "sh ./scripts/screens"
+command: "sh scripts/screens"
 
 refreshFrequency: 3000 # ms
 
