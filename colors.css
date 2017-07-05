@@ -1,5 +1,5 @@
 table, span {
-    color: #7aa5ff;
+    color: #6699CC;
     font: 12px SFMono-Medium;
     text-transform: lowercase;
     -webkit-font-smoothing: antialiased;
@@ -16,27 +16,27 @@ table, span {
 }
 
 .red {
-    color: #ff79c6;
+    color: #EC5f67;
 }
 
 .purple {
-    color: #ae81ff;
+    color: #C594C5;
 }
 
 .orange {
-    color: #FFA500;
+    color: #F99157;
 }
 .orangebg {
-    background: #FFA500;
+    background: #F99157;
     color: #292a44;
 }
 
 .yellow {
-    color: #efe4a1;
+    color: #FAC863;
 }
 
 .yellowbg {
-    background: #efe4a1;
+    background: #FAC863;
     color: #292a44;
 }
 
@@ -59,11 +59,11 @@ table, span {
 }
 
 .blue {
-    color: #7aa5ff;
+    color: #6699CC;
 }
 
 .teal {
-    color: #8eaee0;
+    color: #5FB3B3;
 }
 
 .sicon {

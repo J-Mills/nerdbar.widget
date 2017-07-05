@@ -24,7 +24,18 @@ IFS='|' read -r theArtist theName theState theStream <<<"$(osascript <<<'if appl
       set theTrack to name of current track
       set theArtist to artist of current track
       set theDuration to duration of current track
-      return theArtist & " - " & "<span class='green'>" & theTrack & "<span class='white'>" & " - paused"
+      set dMinutes to round((theDuration mod 3600)/60) rounding down
+      set dSeconds to round(theDuration mod 60)
+      if (dSeconds < 10)
+        set dSeconds to "0" & dSeconds
+      end if
+      set thePosition to player position
+      set theMinutes to round((thePosition mod 3600)/60) rounding down
+      set theSeconds to round(thePosition mod 60)
+      if (theSeconds < 10)
+        set theSeconds to "0" & theSeconds
+      end if
+      return theArtist & " - " & "<span class='green'>" & theTrack & "<span class='yellow'>" & " " & theMinutes & ":" & theSeconds & " / " & dMinutes & ":" & dSeconds & " - paused"
     else
       return "no song selected"
     end if
