@@ -1,6 +1,6 @@
 command: "sh scripts/itunes.sh"
 
-refreshFrequency: 1000 # ms
+refreshFrequency: 200 # ms
 
 render: (output) ->
   """

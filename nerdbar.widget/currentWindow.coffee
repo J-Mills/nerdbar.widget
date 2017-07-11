@@ -10,7 +10,7 @@ render: (output) ->
 
 style: """
   -webkit-font-smoothing: antialiased
-  left: 12.5em
+  left: 12px
   top: 4px
   width:850px
   """
@@ -28,32 +28,31 @@ update: (output, domEl) ->
   flag1 = 0
   flag2 = 0
 
-  while file.length >= 65
+  while file.length >= 100
    file = file.slice(0, -1)
    flag1 = 1
 
   if j > 1
     while j >= 1
       j -= 1
-      if (win + file).length >= 65
-        win = '…/' + win
+      if (win + file).length >= 100
+        win = '.../' + win
         break
       else
         win = winseg[j] + '/' + win
 
-  while win.length >= 65
+  while win.length >= 100
     win = win.slice(1)
     flag2 = 1
 
   if flag1 >= 1
-    file = file + '…'
+    file = file + '...'
 
   if flag2 >= 1
-    win = '…' + win
+    win = '...' + win
 
   if output == ""
-    win = "<span class='white'>…</span>"
-
+    win = "<span class='white'>...</span>"
 
   $(domEl).find('.kwmmode').html("<span class='icon'></span> " +
                                  "<span>#{win}</span><span class='white'>#{file}</span>")

@@ -64,6 +64,9 @@ getReminders: (reminders) ->
 
 getMail: (mail) ->
   return "<span class='mail'><span class='icon'> </span></span><span class='white'>#{mail}&nbsp</span>"
+
+getMessages: (messages) ->
+  return "<span class='messages'><span class='icon'> </span></span><span class='white'>#{messages}&nbsp</span>"
   
 
 update: (output, domEl) ->
@@ -80,10 +83,12 @@ update: (output, domEl) ->
   netIP = values[6]
   reminders = values[7].replace /^\s+|\s+$/g, ""
   mail = values[8]
+  messages = values[8]
 
   # create an HTML string to be displayed by the widget
   htmlString = @getWifiStatus(netStatus, netName, netIP) + "<span>⎢</span>" +
                @batteryStatus(battery, isCharging) + "<span>" + " ⎢ " + "</span>" +
+               @getMessages(messages) +
                @getMail(mail) + 
                @getReminders(reminders) + "<span>⎢</span>" +
                @timeAndDate(date,time) + "<span> ⎢ </span>"

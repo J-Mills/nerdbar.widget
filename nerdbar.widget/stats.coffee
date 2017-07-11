@@ -19,7 +19,7 @@ style: """
 getCPU: (cpu) ->
   cpuNum = parseFloat(cpu)
   # I have four cores, so I divide my CPU percentage by four to get the proper number
-  cpuNum = cpuNum/2
+  cpuNum = cpuNum/4
   cpuNum = cpuNum.toFixed(1)
   cpuString = String(cpuNum)
   if cpuNum < 10
